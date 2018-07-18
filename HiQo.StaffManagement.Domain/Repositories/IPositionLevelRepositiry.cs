@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.Repositories
 {
-    interface IPositionLevelRepositiry
+    public interface IPositionLevelRepositiry
     {
     }
 }

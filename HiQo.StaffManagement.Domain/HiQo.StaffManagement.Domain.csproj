@@ -45,6 +45,7 @@
     <Compile Include="Repositories\IDepartmentRepositiry.cs" />
     <Compile Include="Repositories\IPositionLevelRepositiry.cs" />
     <Compile Include="Repositories\IPositionRepositiry.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRoleRepositiry.cs" />
     <Compile Include="Repositories\IUserRepositiry.cs" />
   </ItemGroup>

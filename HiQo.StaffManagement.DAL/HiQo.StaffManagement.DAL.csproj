@@ -62,10 +62,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
+    <Compile Include="Repositories\PositionLevelRepository.cs" />
+    <Compile Include="Repositories\PositionRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Web", "HiQo.StaffManagement.Web\HiQo.StaffManagement.Web.csproj", "{BCE85FD0-92C5-49C6-84D7-0F55729578D6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{701D8DAC-4851-4CE9-95DB-89D2FF776286} = {701D8DAC-4851-4CE9-95DB-89D2FF776286}
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16} = {63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Web.Core", "HiQo.StaffManagement.Web.Core\HiQo.StaffManagement.Web.Core.csproj", "{5BD56F33-D0ED-4F83-A93D-704AB3FB276A}"
 EndProject
@@ -12,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL", "HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj", "{FC81F4CA-6CDA-45F0-8334-B4A0A766BB40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Domain", "HiQo.StaffManagement.Domain\HiQo.StaffManagement.Domain.csproj", "{701D8DAC-4851-4CE9-95DB-89D2FF776286}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{33F57036-718E-440F-9AF8-50C35033214C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Tests", "HiQo.StaffManagement.DAL.Tests\HiQo.StaffManagement.DAL.Tests.csproj", "{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +47,16 @@ Global
 		{701D8DAC-4851-4CE9-95DB-89D2FF776286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{701D8DAC-4851-4CE9-95DB-89D2FF776286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{701D8DAC-4851-4CE9-95DB-89D2FF776286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16} = {33F57036-718E-440F-9AF8-50C35033214C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3F1FED1-7E3B-4045-B478-40DB55CC673A}

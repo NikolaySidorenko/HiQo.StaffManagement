@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.Repositories
 {
-    public interface IRepository<TEntity>
+    public interface IRepository
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity GetById(int id);
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression);
-        void Create(TEntity entity);
-        void DeleteById(int id);
-        void Update(TEntity entity);
+        ICollection<TDto> GetAll<TEntity, TDto>() where TDto : class 
+            where TEntity : class;
+
+        TDto GetById<TEntity,TDto>(int id) where TDto : class
+            where TEntity : class;
+
+        ICollection<TDto> Get<TEntity,TDto>(Expression<Func<TEntity, bool>> expression) where TDto : class
+            where TEntity : class;
+
+        void Create<TEntity,TDto>(TEntity entity) where TDto : class
+            where TEntity : class;
+
+        void DeleteById<TEntity,TDto>(int id) where TDto : class
+            where TEntity : class;
+
+        void Update<TEntity,TDto>(TEntity entity) where TDto : class
+            where TEntity : class;
     }
 }

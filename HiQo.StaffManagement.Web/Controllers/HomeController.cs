@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 
 using System.Web.Mvc;
+using HiQo.StaffManagement.DAL.Database;
+using HiQo.StaffManagement.DAL.Repositories;
 
 
 namespace HiQo.StaffManagement.Web.Controllers

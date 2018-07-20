@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitiesDTO\CategoryDTO.cs" />
+    <Compile Include="EntitiesDTO\DepartmentDTO.cs" />
+    <Compile Include="EntitiesDTO\GradeDTO.cs" />
+    <Compile Include="EntitiesDTO\PositionDTO.cs" />
+    <Compile Include="EntitiesDTO\RoleDTO.cs" />
+    <Compile Include="EntitiesDTO\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ICategoryRepositiry.cs" />
     <Compile Include="Repositories\IDepartmentRepositiry.cs" />
@@ -48,11 +61,11 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRoleRepositiry.cs" />
     <Compile Include="Repositories\IUserRepositiry.cs" />
+    <Compile Include="Service\UserService.cs" />
+    <Compile Include="Service\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Services\" />
-    <Folder Include="UnitOfWork\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

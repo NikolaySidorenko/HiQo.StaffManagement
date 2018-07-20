@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HiQo.StaffManagement.Configuration.AutoMapper.Profiles;
 using HiQo.StaffManagement.DAL.Database;
 using HiQo.StaffManagement.DAL.Database.Entities;
 using HiQo.StaffManagement.DAL.Repositories;

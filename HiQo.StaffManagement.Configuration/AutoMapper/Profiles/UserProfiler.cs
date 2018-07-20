@@ -2,7 +2,7 @@
 using HiQo.StaffManagement.DAL.Database.Entities;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
 
-namespace HiQo.StaffManagement.DAL.Profiles
+namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
 {
     public class UserProfiler : Profile
     {

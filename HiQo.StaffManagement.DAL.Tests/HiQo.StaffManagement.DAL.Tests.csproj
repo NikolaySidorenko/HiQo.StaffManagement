@@ -85,6 +85,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HiQo.StaffManagement.Configuration\HiQo.StaffManagement.Configuration.csproj">
+      <Project>{29a586e7-0bae-49f8-9b81-bdab1854a0b2}</Project>
+      <Name>HiQo.StaffManagement.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
       <Project>{fc81f4ca-6cda-45f0-8334-b4a0a766bb40}</Project>
       <Name>HiQo.StaffManagement.DAL</Name>

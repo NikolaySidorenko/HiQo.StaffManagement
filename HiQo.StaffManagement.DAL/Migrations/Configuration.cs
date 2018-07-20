@@ -1,119 +1,223 @@
+using System;
 using System.Collections.Generic;
-using HiQo.StaffManagement.DAL.Database.Models;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using HiQo.StaffManagement.DAL.Database;
+using HiQo.StaffManagement.DAL.Database.Entities;
 
 namespace HiQo.StaffManagement.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<HiQo.StaffManagement.DAL.Database.CompanyContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CompanyContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(HiQo.StaffManagement.DAL.Database.CompanyContext context)
+        protected override void Seed(CompanyContext context)
         {
-            string[] roles = new string[] {"SuperAdmin", "Admin", "User"};
-            for (int i = 0; i < roles.Length; i++)
+            var roles = new List<Role>
             {
-                context.Roles.AddOrUpdate(new Role {RoleId = i + 1, Name = roles[i]});
-            }
-
-            string[] departments=new string[] { "Software Development", "Quality Assurance","Resource Management", "Business Analyst" };
-            for (int i = 0; i < departments.Length; i++)
-            {
-                context.Departments.AddOrUpdate(new Department() {DepartmentId = i + 1, Name = departments[i]});
-            }
-
-            List<Category> categories=new List<Category>()
-            {
-                new Category() { CategoryId = 1,Name= ".NET Development" ,DepartmentId = 1},
-                new Category() { CategoryId = 2,Name= "Java Development" ,DepartmentId = 1},
-                new Category() { CategoryId = 3,Name= "Front-End Development" ,DepartmentId = 1},
-                new Category() { CategoryId = 4,Name= "Business Analysis" ,DepartmentId = 4},
-                new Category() { CategoryId = 5,Name= "Quality Assurance" ,DepartmentId = 2},
-                new Category() { CategoryId = 6,Name= "Administration Staff" ,DepartmentId = 3},
-                new Category() { CategoryId = 7,Name= "Management" ,DepartmentId = 3},
+                new Role {RoleId = 1, Name = "SuperAdmin"},
+                new Role {RoleId = 2, Name = "Admin"},
+                new Role {RoleId = 3, Name = "User"}
             };
-            categories.ForEach(c=>context.Categories.AddOrUpdate(c));
 
-            List<Position> positions = new List<Position>()
+            var departments = new List<Department>
             {
-                new Position() {PositionId = 1, Name = ".NET Developer", CategoryId = 1},
-                new Position() {PositionId = 2, Name = "Java Developer", CategoryId = 2},
-                new Position() {PositionId = 3, Name = "Front-End Developer", CategoryId = 3},
-                new Position() {PositionId = 4, Name = "CEO", CategoryId = 7},
-                new Position() {PositionId = 5, Name = "CTO", CategoryId = 7},
-                new Position() {PositionId = 6, Name = "English Teacher", CategoryId = 6},
-                new Position() {PositionId = 6, Name = "HR", CategoryId = 6},
-                new Position() {PositionId = 6, Name = "Accountant", CategoryId = 6},
-                new Position() {PositionId = 6, Name = "Administrator", CategoryId = 6},
-                new Position() {PositionId = 6, Name = "Resource Manager", CategoryId = 6},
-                new Position() {PositionId = 6, Name = "Business Analyst", CategoryId = 4},
-                new Position() {PositionId = 6, Name = "QA Engineer", CategoryId = 5},
+                new Department {DepartmentId = 1, Name = "Software Development"},
+                new Department {DepartmentId = 2, Name = "Quality Assurance"},
+                new Department {DepartmentId = 3, Name = "Resource Management"},
+                new Department {DepartmentId = 4, Name = "Business Analyst"}
             };
-            positions.ForEach(p=>context.Positions.AddOrUpdate(p));
 
-            List<PositionLevel> positionLevels = new List<PositionLevel>()
+            var categories = new List<Category>
             {
-                new PositionLevel(){PositionLevelId = 1,Name = "Intern",Level = 0},
-                new PositionLevel(){PositionLevelId = 2,Name = "Junior",Level = 0},
-                new PositionLevel(){PositionLevelId = 3,Name = "Junior",Level = 1},
-                new PositionLevel(){PositionLevelId = 4,Name = "Junior",Level = 2},
-                new PositionLevel(){PositionLevelId = 5,Name = "Staff",Level = 0},
-                new PositionLevel(){PositionLevelId = 6,Name = "Staff",Level = 1},
-                new PositionLevel(){PositionLevelId = 7,Name = "Staff",Level = 2},
-                new PositionLevel(){PositionLevelId = 8,Name = "Senior",Level = 0},
-                new PositionLevel(){PositionLevelId = 9,Name = "Senior",Level = 1},
-                new PositionLevel(){PositionLevelId = 10,Name = "Senior",Level = 2},
+                new Category
+                {
+                    CategoryId = 1,
+                    Name = ".NET Development",
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 2,
+                    Name = "Java Development",
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 3,
+                    Name = "Front-End Development",
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 4,
+                    Name = "Business Analysis",
+                    DepartmentId = departments.First(d => d.Name == "Business Analyst").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 5,
+                    Name = "Quality Assurance",
+                    DepartmentId = departments.First(d => d.Name == "Quality Assurance").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 6,
+                    Name = "Administration Staff",
+                    DepartmentId = departments.First(d => d.Name == "Resource Management").DepartmentId
+                },
+                new Category
+                {
+                    CategoryId = 7,
+                    Name = "Management",
+                    DepartmentId = departments.First(d => d.Name == "Resource Management").DepartmentId
+                }
             };
-            positionLevels.ForEach(p=>context.PositionLevels.AddOrUpdate(p));
 
-            List<User> users=new List<User>()
+            var positions = new List<Position>
             {
-                new User(){UserId = 1,
+                new Position
+                {
+                    PositionId = 1,
+                    Name = ".NET Developer",
+                    CategoryId = categories.First(c => c.Name == ".NET Development").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 2,
+                    Name = "Java Developer",
+                    CategoryId = categories.First(c => c.Name == "Java Development").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 3,
+                    Name = "Front-End Developer",
+                    CategoryId = categories.First(c => c.Name == "Front-End Development").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 4,
+                    Name = "CEO",
+                    CategoryId = categories.First(c => c.Name == "Management").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 5,
+                    Name = "CTO",
+                    CategoryId = categories.First(c => c.Name == "Management").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "English Teacher",
+                    CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "HR",
+                    CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "Accountant",
+                    CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "Administrator",
+                    CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "Resource Manager",
+                    CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "Business Analyst",
+                    CategoryId = categories.First(c => c.Name == "Business Analysis").CategoryId
+                },
+                new Position
+                {
+                    PositionId = 6,
+                    Name = "QA Engineer",
+                    CategoryId = categories.First(c => c.Name == "Quality Assurance").CategoryId
+                }
+            };
+
+            var positionLevels = new List<PositionLevel>
+            {
+                new PositionLevel {PositionLevelId = 1, Name = "Intern", Level = 0},
+                new PositionLevel {PositionLevelId = 2, Name = "Junior", Level = 0},
+                new PositionLevel {PositionLevelId = 3, Name = "Junior", Level = 1},
+                new PositionLevel {PositionLevelId = 4, Name = "Junior", Level = 2},
+                new PositionLevel {PositionLevelId = 5, Name = "Staff", Level = 0},
+                new PositionLevel {PositionLevelId = 6, Name = "Staff", Level = 1},
+                new PositionLevel {PositionLevelId = 7, Name = "Staff", Level = 2},
+                new PositionLevel {PositionLevelId = 8, Name = "Senior", Level = 0},
+                new PositionLevel {PositionLevelId = 9, Name = "Senior", Level = 1},
+                new PositionLevel {PositionLevelId = 10, Name = "Senior", Level = 2}
+            };
+
+            var users = new List<User>
+            {
+                new User
+                {
+                    UserId = 1,
                     FirstName = "Nikolay",
                     LastName = "Sidorenko",
                     UserName = "Kolya",
-                    DateOfBirth = new DateTime(1999,05,20),
-                    DepartmentId = 1,
-                    CategoryId = 1,
-                    PositionId = 1,
-                    PositionLevelId = 1,
-                    RoleId = 3
+                    DateOfBirth = new DateTime(1999, 05, 20),
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId,
+                    CategoryId = categories.First(c => c.Name == ".NET Development").CategoryId,
+                    PositionId = positions.First(p => p.Name == ".NET Developer").PositionId,
+                    PositionLevelId = positionLevels.Single(level => level.Name == "Intern").PositionLevelId,
+                    RoleId = roles.First(r => r.Name == "User").RoleId
                 },
 
-                new User(){
+                new User
+                {
                     UserId = 2,
                     FirstName = "Kirill",
                     LastName = "Dudkov",
                     UserName = "Kirill",
-                    DateOfBirth = new DateTime(1997,10,21),
-                    DepartmentId = 1,
-                    CategoryId = 1,
-                    PositionId = 1,
-                    PositionLevelId = 1,
-                    RoleId = 3
+                    DateOfBirth = new DateTime(1997, 10, 21),
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId,
+                    CategoryId = categories.First(c => c.Name == ".NET Development").CategoryId,
+                    PositionId = positions.First(p => p.Name == ".NET Developer").PositionId,
+                    PositionLevelId = positionLevels.Single(level => level.Name == "Intern").PositionLevelId,
+                    RoleId = roles.First(r => r.Name == "User").RoleId
                 },
 
-                new User(){
+                new User
+                {
                     UserId = 3,
                     FirstName = "Dmitriy",
                     LastName = "Karabanovich",
                     UserName = "Dima",
-                    DateOfBirth = new DateTime(1999,07,8),
-                    DepartmentId = 1,
-                    CategoryId = 1,
-                    PositionId = 1,
-                    PositionLevelId = 1,
-                    RoleId = 3
-                },
+                    DateOfBirth = new DateTime(1999, 07, 8),
+                    DepartmentId = departments.First(d => d.Name == "Software Development").DepartmentId,
+                    CategoryId = categories.First(c => c.Name == ".NET Development").CategoryId,
+                    PositionId = positions.First(p => p.Name == ".NET Developer").PositionId,
+                    PositionLevelId = positionLevels.Single(level => level.Name == "Intern").PositionLevelId,
+                    RoleId = roles.First(r => r.Name == "User").RoleId
+                }
             };
-            users.ForEach(u=>context.Users.AddOrUpdate(u));
+
+            roles.ForEach(r => context.Roles.AddOrUpdate(r));
+            departments.ForEach(d => context.Departments.AddOrUpdate(d));
+            positions.ForEach(p => context.Positions.AddOrUpdate(p));
+            positionLevels.ForEach(p => context.PositionLevels.AddOrUpdate(p));
+            categories.ForEach(c => context.Categories.AddOrUpdate(c));
+            users.ForEach(u => context.Users.AddOrUpdate(u));
             context.SaveChanges();
         }
     }

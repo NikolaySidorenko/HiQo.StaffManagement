@@ -1,12 +1,11 @@
 ﻿using HiQo.StaffManagement.DAL.Database;
-using HiQo.StaffManagement.DAL.Database.Models;
 using HiQo.StaffManagement.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public class CategoryRepository :BaseRepository<Category>,ICategoryRepositiry
+    public class CategoryRepository :BaseRepository,ICategoryRepositiry
     {
-        public CategoryRepository(CompanyContext context) : base(context)
+        public CategoryRepository(CompanyContext dbContext) : base(dbContext)
         {
         }
     }

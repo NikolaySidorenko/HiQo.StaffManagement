@@ -7,13 +7,13 @@ namespace HiQo.StaffManagement.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitDatabaseCompany : IMigrationMetadata
+    public sealed partial class EnterData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDatabaseCompany));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(EnterData));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807171312248_InitDatabaseCompany"; }
+            get { return "201807181454508_EnterData"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HiQo.StaffManagement.DAL.Database.Models
+namespace HiQo.StaffManagement.DAL.Database.Entities
 {
     public class Department
     {

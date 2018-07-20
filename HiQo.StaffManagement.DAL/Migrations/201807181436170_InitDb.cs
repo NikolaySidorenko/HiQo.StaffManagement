@@ -3,16 +3,16 @@ namespace HiQo.StaffManagement.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDatabaseCompany : DbMigration
+    public partial class InitDb : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                    "dbo.Categories",
-                    c => new
+                "dbo.Categories",
+                c => new
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false, maxLength: 40),
                         DepartmentId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CategoryId)
@@ -24,7 +24,7 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 c => new
                     {
                         DepartmentId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false, maxLength: 40),
                     })
                 .PrimaryKey(t => t.DepartmentId);
             
@@ -33,9 +33,9 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 c => new
                     {
                         UserId = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(nullable: false, maxLength: 30),
-                        LastName = c.String(nullable: false, maxLength: 30),
-                        UserName = c.String(nullable: false, maxLength: 30),
+                        FirstName = c.String(nullable: false, maxLength: 40),
+                        LastName = c.String(nullable: false, maxLength: 40),
+                        UserName = c.String(nullable: false, maxLength: 40),
                         DateOfBirth = c.DateTime(nullable: false),
                         RoleId = c.Int(nullable: false),
                         PositionId = c.Int(nullable: false),
@@ -60,7 +60,7 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 c => new
                     {
                         PositionId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false, maxLength: 40),
                         CategoryId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PositionId)
@@ -72,7 +72,7 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 c => new
                     {
                         PositionLevelId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false, maxLength: 40),
                         Level = c.Int(),
                     })
                 .PrimaryKey(t => t.PositionLevelId);
@@ -82,7 +82,7 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 c => new
                     {
                         RoleId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false, maxLength: 40),
                     })
                 .PrimaryKey(t => t.RoleId);
             

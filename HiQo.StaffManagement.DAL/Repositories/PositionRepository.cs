@@ -1,12 +1,12 @@
 ﻿using HiQo.StaffManagement.DAL.Database;
-using HiQo.StaffManagement.DAL.Database.Models;
+using HiQo.StaffManagement.DAL.Database.Entities;
 using HiQo.StaffManagement.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public class PositionRepository:BaseRepository<Position>,IPositionRepositiry
+    public class PositionRepository:BaseRepository,IPositionRepositiry
     {
-        public PositionRepository(CompanyContext context) : base(context)
+        public PositionRepository(CompanyContext dbContext) : base(dbContext)
         {
         }
     }

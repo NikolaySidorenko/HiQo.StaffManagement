@@ -5,51 +5,56 @@ using System.Linq;
 using System.Linq.Expressions;
 using HiQo.StaffManagement.DAL.Database;
 using HiQo.StaffManagement.Domain.Repositories;
-
+using AutoMapper;
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
-
+    public class BaseRepository : IRepository
     {
-        protected CompanyContext _context;
+        protected CompanyContext DbContext;
 
-        protected DbSet<TEntity> _dbSet;
-
-        protected BaseRepository(CompanyContext context)
+        protected BaseRepository(CompanyContext dbContext)
         {
-            _context = context;
-            _dbSet = context.Set<TEntity>();
+            DbContext = dbContext;
         }
 
-        public IEnumerable<TEntity> GetAll()
+
+        public ICollection<TDto> GetAll<TEntity, TDto>() where TEntity : class where TDto : class
         {
-            return _dbSet.ToList();
+            throw new NotImplementedException();
         }
 
-        public TEntity GetById(int id)
+        public TDto GetById<TEntity, TDto>(int id) where TEntity : class where TDto : class
         {
-            return _dbSet.Find(id);
+            var entity = DbContext.Set<TEntity>().Find(id);
+            var dto= Mapper.Map<TEntity, TDto>(entity);
+            return dto;
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> expression)
+        public ICollection<TDto> Get<TEntity, TDto>(Expression<Func<TEntity, bool>> expression) where TEntity : class where TDto : class
         {
-            return _dbSet.AsNoTracking().Where(expression).ToList();
+            var entities = DbContext.Set<TEntity>().Where(expression);
+            ICollection<TDto> Dtos=new List<TDto>();
+            foreach (var entity in entities)
+            {
+                Dtos.Add(Mapper.Map<TEntity,TDto>(entity));
+            }
+
+            return Dtos;
         }
 
-        public void Create(TEntity entity)
+        public void Create<TEntity, TDto>(TEntity entity) where TEntity : class where TDto : class
         {
-            _dbSet.Add(entity);
+            throw new NotImplementedException();
         }
 
-        public void DeleteById(int id)
+        public void DeleteById<TEntity, TDto>(int id) where TEntity : class where TDto : class
         {
-            var entity = _dbSet.Find(id);
-            _dbSet.Remove(entity ?? throw new NullReferenceException());
+            throw new NotImplementedException();
         }
 
-        public void Update(TEntity entity)
+        public void Update<TEntity, TDto>(TEntity entity) where TEntity : class where TDto : class
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            throw new NotImplementedException();
         }
     }
 }

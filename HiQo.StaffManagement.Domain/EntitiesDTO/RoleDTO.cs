@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
-    public class RoleDTO
+    public class RoleDto
     {
         public int RoleId { get; set; }
 
         public string Name { get; set; }
 
-        public RoleDTO()
+        public virtual ICollection<UserDto> Users { get; set; }
+
+        public RoleDto()
         {
-            
+            Users = new List<UserDto>();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace HiQo.StaffManagement.DAL.Repositories
         public PositionRepository(CompanyContext dbContext) : base(dbContext)
         {
         }
+
     }
 }

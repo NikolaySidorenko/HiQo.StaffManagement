@@ -61,11 +61,22 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRoleRepositiry.cs" />
     <Compile Include="Repositories\IUserRepositiry.cs" />
+    <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\DepartmentService.cs" />
+    <Compile Include="Service\GradeService.cs" />
+    <Compile Include="Service\Interfaces\ICategoryService.cs" />
+    <Compile Include="Service\Interfaces\IDepartmentService.cs" />
+    <Compile Include="Service\Interfaces\IGradeService.cs" />
+    <Compile Include="Service\Interfaces\IPositionService.cs" />
+    <Compile Include="Service\Interfaces\IRoleService.cs" />
+    <Compile Include="Service\PostionService.cs" />
+    <Compile Include="Service\RoleService.cs" />
     <Compile Include="Service\UserService.cs" />
-    <Compile Include="Service\IUserService.cs" />
+    <Compile Include="Service\Interfaces\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -117,37 +117,37 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 7,
                     Name = "HR",
                     CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 8,
                     Name = "Accountant",
                     CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 9,
                     Name = "Administrator",
                     CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 10,
                     Name = "Resource Manager",
                     CategoryId = categories.First(c => c.Name == "Administration Staff").CategoryId
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 11,
                     Name = "Business Analyst",
                     CategoryId = categories.First(c => c.Name == "Business Analysis").CategoryId
                 },
                 new Position
                 {
-                    PositionId = 6,
+                    PositionId = 12,
                     Name = "QA Engineer",
                     CategoryId = categories.First(c => c.Name == "Quality Assurance").CategoryId
                 }

@@ -3,52 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using HiQo.StaffManagement.Domain.EntitiesDTO;
 using HiQo.StaffManagement.Domain.Repositories;
 
 namespace HiQo.StaffManagement.Domain.Service
 {
-    class UserService: IUserService
+    public class UserService: IUserService
     {
-        private IUserRepositiry _userRepository;
+        private readonly IUserRepositiry _repositiry;
 
         public UserService(IUserRepositiry userRepository)
         {
-            _userRepository = userRepository;
+            _repositiry = userRepository;
         }
 
-        public TEntitiy GetByUserName<TEntitiy>(string userName) where TEntitiy : class
+        public IEnumerable<UserDto> GetAll()
         {
-            throw new NotImplementedException();
+            return _repositiry.GetAll<UserDto>();
         }
 
-        public IEnumerable<TEntity> GetByDepartment<TEntity>(string department) where TEntity : class
+        public UserDto GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetByCategory<TEntity>(string category) where TEntity : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetByPosition<TEntity>(string position) where TEntity : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetByPositionLevel<TEntity>(string positionLevel) where TEntity : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetByRole<TEntity>(string role) where TEntity : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TEntity> GetByAge<TEntity>(int age) where TEntity : class
-        {
-            throw new NotImplementedException();
+            return _repositiry.GetById<UserDto>(id);
         }
     }
 }

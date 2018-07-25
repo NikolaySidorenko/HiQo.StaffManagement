@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Web", "HiQo.StaffManagement.Web\HiQo.StaffManagement.Web.csproj", "{BCE85FD0-92C5-49C6-84D7-0F55729578D6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{701D8DAC-4851-4CE9-95DB-89D2FF776286} = {701D8DAC-4851-4CE9-95DB-89D2FF776286}
-		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16} = {63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Web.Core", "HiQo.StaffManagement.Web.Core\HiQo.StaffManagement.Web.Core.csproj", "{5BD56F33-D0ED-4F83-A93D-704AB3FB276A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Configuration", "HiQo.StaffManagement.Configuration\HiQo.StaffManagement.Configuration.csproj", "{29A586E7-0BAE-49F8-9B81-BDAB1854A0B2}"
@@ -21,16 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{33F57036
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Tests", "HiQo.StaffManagement.DAL.Tests\HiQo.StaffManagement.DAL.Tests.csproj", "{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Web", "HiQo.StaffManagement.Web\HiQo.StaffManagement.Web.csproj", "{B41EBE81-D039-4D46-8B1C-B4FF8DE37087}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCE85FD0-92C5-49C6-84D7-0F55729578D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCE85FD0-92C5-49C6-84D7-0F55729578D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCE85FD0-92C5-49C6-84D7-0F55729578D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCE85FD0-92C5-49C6-84D7-0F55729578D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5BD56F33-D0ED-4F83-A93D-704AB3FB276A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BD56F33-D0ED-4F83-A93D-704AB3FB276A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD56F33-D0ED-4F83-A93D-704AB3FB276A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +43,10 @@ Global
 		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63F5DEE0-E8AA-409B-A3A9-64EAD46D1A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B41EBE81-D039-4D46-8B1C-B4FF8DE37087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B41EBE81-D039-4D46-8B1C-B4FF8DE37087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B41EBE81-D039-4D46-8B1C-B4FF8DE37087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B41EBE81-D039-4D46-8B1C-B4FF8DE37087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

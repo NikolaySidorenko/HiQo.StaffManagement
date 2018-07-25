@@ -6,15 +6,24 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
-    public class CategoryDTO
+    public class CategoryDto
     {
         public int CategoryId { get; set; }
 
         public string Name { get; set; }
 
-        public CategoryDTO()
+        public int DepartmentId { get; set; }
+
+        public virtual DepartmentDto Department { get; set; }
+
+        public virtual ICollection<PositionDto> Positions { get; set; }
+
+        public virtual ICollection<UserDto> Users { get; set; }
+
+        public CategoryDto()
         {
-            
+            Positions = new List<PositionDto>();
+            Users = new List<UserDto>();
         }
     }
 }

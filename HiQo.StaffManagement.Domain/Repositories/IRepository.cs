@@ -6,22 +6,16 @@ namespace HiQo.StaffManagement.Domain.Repositories
 {
     public interface IRepository
     {
-        ICollection<TDto> GetAll<TEntity, TDto>() where TDto : class 
-            where TEntity : class;
+        IEnumerable<TDto> GetAll<TDto>();
 
-        TDto GetById<TEntity,TDto>(int id) where TDto : class
-            where TEntity : class;
+        void Create<TDto>(TDto entity) where TDto : class;
 
-        ICollection<TDto> Get<TEntity,TDto>(Expression<Func<TEntity, bool>> expression) where TDto : class
-            where TEntity : class;
+        void DeleteById<TDto>(int id) where TDto : class;
 
-        void Create<TEntity,TDto>(TEntity entity) where TDto : class
-            where TEntity : class;
+        TDto GetById<TDto>(int id) where TDto : class;
 
-        void DeleteById<TEntity,TDto>(int id) where TDto : class
-            where TEntity : class;
+        void Update<TDto>(TDto entity) where TDto : class;
 
-        void Update<TEntity,TDto>(TEntity entity) where TDto : class
-            where TEntity : class;
+        void SaveChanges();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
-    public class UserDto
+    public class UserDTO
     {
         public int UserId { get; set; }
 
@@ -18,27 +18,19 @@ namespace HiQo.StaffManagement.Domain.EntitiesDTO
 
         public DateTime DateOfBirth { get; set; }
 
-        public int DepartmentId { get; set; }
+        public string Role { get; set; }
 
-        public DepartmentDto Department { get; set; }
+        public string Department { get; set; }
 
-        public int PositionId { get; set; }
+        public string Position { get; set; }
 
-        public PositionDto Position { get; set; }
+        public string Grade { get; set; }
 
-        public int CategoryId { get; set; }
+        public int GradeLevel { get; set; }
 
-        public CategoryDto Category { get; set; }
- 
-        public int GradeId { get; set; }
+        public string Category { get; set; }
 
-        public GradeDto Grade { get; set; }
-
-        public int RoleId { get; set; }
-
-        public RoleDto Role { get; set; }
-
-        public UserDto()
+        public UserDTO()
         {
 
         }

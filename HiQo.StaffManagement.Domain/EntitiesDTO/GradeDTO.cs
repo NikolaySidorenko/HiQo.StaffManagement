@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
-    public class GradeDto
+    public class GradeDTO
     {
-        public int GradeId { get; set; }
+        public int DradeId { get; set; }
 
-        public string Name { get; set; }
+        public string Nam { get; set; }
 
-        public int? Level { get; set; }
+        public int Level { get; set; }
 
-        public virtual ICollection<UserDto> Users { get; set; }
-
-        public GradeDto()
+        public GradeDTO()
         {
-            Users = new List<UserDto>();
+            
         }
     }
 }

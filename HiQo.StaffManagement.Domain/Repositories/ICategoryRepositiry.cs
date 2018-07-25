@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.Repositories
 {
-    public interface ICategoryRepositiry : IRepository
+    public interface ICategoryRepositiry
     {
     }
 }

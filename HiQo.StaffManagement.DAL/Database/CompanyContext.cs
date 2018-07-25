@@ -5,7 +5,7 @@ namespace HiQo.StaffManagement.DAL.Database
 {
     public class CompanyContext:DbContext
     {
-        public CompanyContext() : base(@"Data Source=.\SQLEXPRESS;Initial Catalog=HiQo.StaffManagement;Integrated Security=True")
+        public CompanyContext() : base("name=CompanyDB")
         {
            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<CompanyContext, Migrations.Configuration>());
         } 
@@ -21,6 +21,7 @@ namespace HiQo.StaffManagement.DAL.Database
         public IDbSet<Position> Positions { get; set; }
 
         public IDbSet<PositionLevel> PositionLevels { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -83,6 +84,5 @@ namespace HiQo.StaffManagement.DAL.Database
             modelBuilder.Entity<Department>().HasKey(d => d.DepartmentId);
             modelBuilder.Entity<Department>().Property(d => d.Name).HasMaxLength(40).IsRequired();
         }
-
     }
 }

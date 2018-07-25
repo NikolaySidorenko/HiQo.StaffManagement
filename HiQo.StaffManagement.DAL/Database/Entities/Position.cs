@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HiQo.StaffManagement.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Database.Entities
 {

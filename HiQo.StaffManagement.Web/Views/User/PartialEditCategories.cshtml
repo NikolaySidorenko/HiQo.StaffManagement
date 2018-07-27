@@ -1,0 +1,7 @@
+﻿@model IEnumerable<HiQo.StaffManagement.Domain.EntitiesDTO.CategoryDto>
+<select class="form-control" data-val="true" data-val-number="The field CategoryId must be a number." data-val-required="Требуется поле CategoryId." id="category" name="CategoryId">
+    @foreach (var item in Model)
+    {
+        <option value="@item.CategoryId">@item.Name</option>
+    }
+</select>

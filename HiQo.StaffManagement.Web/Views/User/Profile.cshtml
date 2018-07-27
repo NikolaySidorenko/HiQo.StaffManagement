@@ -1,0 +1,25 @@
+﻿@model HiQo.StaffManagement.Domain.EntitiesDTO.UserDto
+@{
+    ViewBag.Title = @Model.FirstName+" "+@Model.LastName;
+}
+<h3>@ViewBag.Title</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 panel-body">     
+            <p>First Name: @Html.DisplayFor(user=>user.FirstName)</p>
+            <p>Last Name: @Html.DisplayFor(user=>user.LastName)</p>
+            <p>User Name: @Html.DisplayFor(user => user.UserName)</p>
+            <p>Date of birth: @Model.DateOfBirth.ToShortDateString()</p>
+            <hr />
+            <p>Department: @Html.DisplayFor(user => user.Department.Name)</p>
+            <p>Category: @Html.DisplayFor(user => user.Category.Name)</p>
+            <p>Position: @Html.DisplayFor(user => user.Position.Name)</p>
+            <p>Grade: @Html.DisplayFor(user => user.Grade.Name)</p>
+            <p><a class="btn btn-default" href="~/User/Update/@Model.UserId">Edit profile &raquo;</a></p>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+
+

@@ -1,21 +1,17 @@
-﻿using System.Web.Mvc;
-using HiQo.StaffManagement.Domain.Service;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace HiQo.StaffManagement.Web.Controllers
 {
     public class RoleController : Controller
     {
-        private IRoleSrivice _service;
-
-        public RoleController(IRoleSrivice service)
-        {
-            _service= service;
-        }
-
+        // GET: Role
         public ActionResult Index()
         {
-            var roles =_service.GetAll();
-            return View(roles);
+            return View();
         }
     }
 }

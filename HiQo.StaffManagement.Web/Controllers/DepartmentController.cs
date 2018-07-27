@@ -1,21 +1,25 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using HiQo.StaffManagement.Domain.Service.Interfaces;
 
 namespace HiQo.StaffManagement.Web.Controllers
 {
     public class DepartmentController : Controller
     {
-        private IDepartmentService _service;
+        private IDepartmentService departmentService;
 
-        public DepartmentController(IDepartmentService service)
+        public DepartmentController(IDepartmentService departmentService)
         {
-            _service = service;
+            this.departmentService = departmentService;
         }
 
         // GET: Department
         public ActionResult Index()
         {
-            var departments = _service.GetAll();
+            var departments = departmentService.GetAll();
             return View(departments);
         }
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,16 +16,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Staff Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               <img src="~/Content/HiQo-Logo.png" style="width: 70px;"/>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Users", "Index", "User")</li>
+                <ul class="nav navbar-nav" style="margin-left: 50px">
+                    <li>@Html.ActionLink("Staff", "Index", "User")</li>
                     <li>@Html.ActionLink("Departments", "Index", "Department")</li>
-                    <li>@Html.ActionLink("Categories", "Index", "Category")</li>
-                    <li>@Html.ActionLink("Positions", "Index", "Position")</li>
-                    <li>@Html.ActionLink("Grades", "Index", "Grade")</li>
                 </ul>
             </div>
         </div>
@@ -34,12 +30,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - HiQo Staff Management</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/Content")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

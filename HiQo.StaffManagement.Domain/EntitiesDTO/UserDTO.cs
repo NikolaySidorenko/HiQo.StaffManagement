@@ -38,6 +38,7 @@ namespace HiQo.StaffManagement.Domain.EntitiesDTO
 
         public RoleDto Role { get; set; }
 
+
         public UserDto()
         {
 

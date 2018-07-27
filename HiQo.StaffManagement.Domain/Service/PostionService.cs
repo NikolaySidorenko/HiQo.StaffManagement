@@ -28,5 +28,10 @@ namespace HiQo.StaffManagement.Domain.Service
         {
             return _repositiry.GetById<PositionDto>(id); 
         }
+
+        public IEnumerable<PositionDto> GetByCategoryId(int id)
+        {
+            return _repositiry.GetAll<PositionDto>().Where(p => p.CategoryId == id);
+        }
     }
 }

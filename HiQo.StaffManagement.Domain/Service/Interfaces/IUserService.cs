@@ -7,5 +7,6 @@ namespace HiQo.StaffManagement.Domain.Service
     {
         IEnumerable<UserDto> GetAll();
         UserDto GetById(int id);
+        void Update(UserDto user);
     }
 }

@@ -11,5 +11,6 @@ namespace HiQo.StaffManagement.Domain.Service.Interfaces
     {
         IEnumerable<CategoryDto> GetAll();
         CategoryDto GetById(int id);
+        IEnumerable<CategoryDto> GetByDepartmentId(int id);
     }
 }

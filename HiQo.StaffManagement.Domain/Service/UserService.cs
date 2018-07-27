@@ -27,5 +27,13 @@ namespace HiQo.StaffManagement.Domain.Service
         {
             return _repositiry.GetById<UserDto>(id);
         }
+
+        public void Update(UserDto user)
+        {
+            var us = _repositiry.GetById<UserDto>(user.UserId);
+            us = user;
+            _repositiry.Update<UserDto>(us);
+            _repositiry.SaveChanges();
+        }
     }
 }

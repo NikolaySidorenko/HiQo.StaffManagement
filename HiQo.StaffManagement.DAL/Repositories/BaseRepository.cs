@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using AutoMapper;
 using HiQo.StaffManagement.DAL.Database;
@@ -73,7 +74,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
                 var role = Mapper.Map<Role>(entity);
                 DbContext.Roles.Add(role);
             }
-            throw new Exception();
+            return;
 
         }
 
@@ -158,37 +159,43 @@ namespace HiQo.StaffManagement.DAL.Repositories
             if (typeof(TDto) == typeof(UserDto))
             {
                 var user = Mapper.Map<User>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                DbContext.Users.AddOrUpdate(us=>us.UserId,user);
+                return;
             }
 
             if (typeof(TDto) == typeof(DepartmentDto))
             {
-                var user = Mapper.Map<Department>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                var department = Mapper.Map<Department>(entity);
+                DbContext.Departments.AddOrUpdate(dep => dep.DepartmentId, department);
+                return;
             }
 
             if (typeof(TDto) == typeof(CategoryDto))
             {
-                var user = Mapper.Map<Category>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                var category = Mapper.Map<Category>(entity);
+                DbContext.Categories.AddOrUpdate(cat => cat.CategoryId, category);
+                return;
             }
 
             if (typeof(TDto) == typeof(PositionDto))
             {
-                var user = Mapper.Map<Position>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                var position = Mapper.Map<Position>(entity);
+                DbContext.Positions.AddOrUpdate(pos => pos.PositionId, position);
+                return;
             }
 
             if (typeof(TDto) == typeof(GradeDto))
             {
-                var user = Mapper.Map<PositionLevel>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                var grade = Mapper.Map<PositionLevel>(entity);
+                DbContext.PositionLevels.AddOrUpdate(pl => pl.PositionLevelId, grade);
+                return;
             }
 
             if (typeof(TDto) == typeof(RoleDto))
             {
-                var user = Mapper.Map<Role>(entity);
-                DbContext.Entry(user).State = EntityState.Modified;
+                var role = Mapper.Map<Role>(entity);
+                DbContext.Roles.AddOrUpdate(rl => rl.RoleId, role);
+                return;
             }
             throw new Exception();
         }

@@ -99,6 +99,10 @@
       <Project>{701d8dac-4851-4ce9-95db-89d2ff776286}</Project>
       <Name>HiQo.StaffManagement.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HiQo.StaffManagement.Web.Core\HiQo.StaffManagement.Web.Core.csproj">
+      <Project>{5bd56f33-d0ed-4f83-a93d-704ab3fb276a}</Project>
+      <Name>HiQo.StaffManagement.Web.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

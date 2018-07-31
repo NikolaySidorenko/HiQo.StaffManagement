@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
 
-namespace HiQo.StaffManagement.Domain.Service
+namespace HiQo.StaffManagement.Domain.Service.Interfaces
 {
     public interface IUserService
     {

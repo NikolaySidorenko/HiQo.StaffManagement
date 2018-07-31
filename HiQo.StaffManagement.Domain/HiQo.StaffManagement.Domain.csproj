@@ -70,7 +70,9 @@
     <Compile Include="Service\Interfaces\IGradeService.cs" />
     <Compile Include="Service\Interfaces\IPositionService.cs" />
     <Compile Include="Service\Interfaces\IRoleService.cs" />
+    <Compile Include="Service\Interfaces\ISharedService.cs" />
     <Compile Include="Service\Interfaces\IUpsertUserService.cs" />
+    <Compile Include="Service\SharedService.cs" />
     <Compile Include="Service\PostionService.cs" />
     <Compile Include="Service\RoleService.cs" />
     <Compile Include="Service\UpsertUserService.cs" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using AutoMapper;
@@ -43,38 +42,44 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var user= Mapper.Map<User>(entity);
                 DbContext.Users.Add(user);
+                return;
             }
 
             if (typeof(TDto) == typeof(DepartmentDto))
             {
                 var department = Mapper.Map<Department>(entity);
                 DbContext.Departments.Add(department);
+                return;
             }
 
             if (typeof(TDto) == typeof(CategoryDto))
             {
                 var category = Mapper.Map<Category>(entity);
                 DbContext.Categories.Add(category);
+                return;
             }
 
             if (typeof(TDto) == typeof(PositionDto))
             {
                 var position = Mapper.Map<Position>(entity);
                 DbContext.Positions.Add(position);
+                return;
             }
 
             if (typeof(TDto) == typeof(GradeDto))
             {
                 var positionLevel = Mapper.Map<PositionLevel>(entity);
                 DbContext.PositionLevels.Add(positionLevel);
+                return;
             }
 
             if (typeof(TDto) == typeof(RoleDto))
             {
                 var role = Mapper.Map<Role>(entity);
                 DbContext.Roles.Add(role);
+                return;
             }
-            return;
+            throw new Exception();
 
         }
 
@@ -84,36 +89,42 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity=DbContext.Users.Find(id);
                 DbContext.Users.Remove(entity);
+                return;
             }
 
             if (typeof(TDto) == typeof(DepartmentDto))
             {
                 var entity = DbContext.Departments.Find(id);
                 DbContext.Departments.Remove(entity);
+                return;
             }
 
             if (typeof(TDto) == typeof(CategoryDto))
             {
                 var entity = DbContext.Categories.Find(id);
                 DbContext.Categories.Remove(entity);
+                return;
             }
 
             if (typeof(TDto) == typeof(PositionDto))
             {
                 var entity = DbContext.Positions.Find(id);
                 DbContext.Positions.Remove(entity);
+                return;
             }
 
             if (typeof(TDto) == typeof(GradeDto))
             {
                 var entity = DbContext.PositionLevels.Find(id);
                 DbContext.PositionLevels.Remove(entity);
+                return;
             }
 
             if (typeof(TDto) == typeof(RoleDto))
             {
                 var entity = DbContext.Roles.Find(id);
                 DbContext.Roles.Remove(entity);
+                return;
             }
 
             throw new Exception();

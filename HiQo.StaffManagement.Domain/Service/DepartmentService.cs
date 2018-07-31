@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
 using HiQo.StaffManagement.Domain.Repositories;
 using HiQo.StaffManagement.Domain.Service.Interfaces;
@@ -26,5 +24,13 @@ namespace HiQo.StaffManagement.Domain.Service
             return _repositiry.GetById<DepartmentDto>(id);
         }
 
+        public void Upsert(DepartmentDto department)
+        {
+            if(department.DepartmentId==0)
+                _repositiry.Create(department);
+            else 
+                _repositiry.Update(department);
+            _repositiry.SaveChanges();
+        }
     }
 }

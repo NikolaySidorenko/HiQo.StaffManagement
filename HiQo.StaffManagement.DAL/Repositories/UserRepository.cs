@@ -1,5 +1,4 @@
-﻿using HiQo.StaffManagement.DAL.Database.Entities;
-using HiQo.StaffManagement.Domain.Repositories;
+﻿using HiQo.StaffManagement.Domain.Repositories;
 using HiQo.StaffManagement.DAL.Database;
 
 namespace HiQo.StaffManagement.DAL.Repositories

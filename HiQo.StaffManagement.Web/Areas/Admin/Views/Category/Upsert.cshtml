@@ -1,0 +1,20 @@
+﻿@model HiQo.StaffManagement.Web.Core.Models.CategoryViewModel
+@{
+    ViewBag.Title = "Upsert";
+}
+@if (Model == null)
+{
+    <h2>New category</h2>
+}
+else { <h2>Category</h2>}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Upsert", "Department", FormMethod.Post))
+            {
+                <p>@Html.LabelFor(category=>category.Name,"Name")</p>
+                <p>@Html.DropDownListFor(category=>category.DepartmentId,ViewBag.Departments as SelectList,new htmlAttributes {new {@class="form-control"}})</p>
+            }
+        </div>
+    </div>
+</div>

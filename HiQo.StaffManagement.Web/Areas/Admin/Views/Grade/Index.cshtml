@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HiQo.StaffManagement.Domain.EntitiesDTO.GradeDto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p><a class="btn btn-default" href="~/Grade/Create">Create grade &raquo;</a></p>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Level</td>
+    </tr>
+    </thead>
+    <tbody class="tab-content">
+    @foreach (var grade in Model)
+    {
+        <tr>
+            <td>@grade.Name</td>
+            <td>@grade.Level</td>
+            <td><a class="btn btn-default" href="~/Grade/Update/@grade.GradeId">Edit &raquo;</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

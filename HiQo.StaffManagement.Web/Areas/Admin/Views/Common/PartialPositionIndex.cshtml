@@ -1,0 +1,22 @@
+﻿@model IEnumerable<HiQo.StaffManagement.Domain.EntitiesDTO.PositionDto>
+
+<p>@Html.ActionLink("Create", "PositionCreate", "Common", new { area = "Admin" }, new { @class = "btn btn-default" })</p>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Category</td>
+        </tr>
+    </thead>
+    <tbody class="tab-content">
+        @foreach (var position in Model)
+        {
+            <tr>
+                <td>@position.Name</td>
+                <td>@position.Category.Name</td>
+                <td>@Html.ActionLink("Edit »", "Position", "Common", new { area = "Admin", id = position.PositionId },  new { @class = "btn btn-default" } )</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

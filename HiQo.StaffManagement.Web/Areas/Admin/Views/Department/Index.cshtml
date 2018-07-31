@@ -1,0 +1,23 @@
+﻿@model IEnumerable<HiQo.StaffManagement.Web.Core.Models.DepartmentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p><a class="btn btn-default" href="~/Department/Create">Create department &raquo;</a></p>
+<table class="table">
+    <thead>
+    <tr>
+        <td>Name</td>
+    </tr>
+    </thead>
+    <tbody class="tab-content">
+    @foreach (var department in Model)
+    {
+        <tr>
+            <td>@department.Name</td>
+            <td><a class="btn btn-default" href="~/Department/Update/@department.DepartmentId">Edit &raquo;</a></td>
+        </tr>
+    }
+    </tbody>
+</table>

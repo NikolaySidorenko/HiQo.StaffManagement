@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,7 +16,9 @@ namespace HiQo.StaffManagement.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutomapperConfiguration.ConfigureAutomapper();
-            IoCContainer.Setup();
+
+            var assembly = Assembly.GetExecutingAssembly();
+            IoCContainer.Setup(assembly.GetName().Name);
         }
     }
 }

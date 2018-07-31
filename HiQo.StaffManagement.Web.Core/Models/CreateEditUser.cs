@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HiQo.StaffManagement.Web.Core.Models
 {
@@ -12,6 +13,8 @@ namespace HiQo.StaffManagement.Web.Core.Models
 
         public string UserName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         public int DepartmentId { get; set; }

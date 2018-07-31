@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CreateEditUser.cs" />
+    <Compile Include="Models\DepartmentViewModel.cs" />
     <Compile Include="Models\GradeViewModel.cs" />
-    <Compile Include="Models\UserInfoViewModel.cs" />
+    <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

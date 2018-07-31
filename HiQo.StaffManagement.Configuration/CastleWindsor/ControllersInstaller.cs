@@ -2,12 +2,24 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Castle.Windsor.Installer;
 
 namespace HiQo.StaffManagement.Configuration.CastleWindsor
 {
     public class ControllersInstaller:IWindsorInstaller
     {
+        private readonly string _assemblyName;
+
+        public ControllersInstaller()
+        {
+            
+        }
+
+        public ControllersInstaller(string assemblyName)
+        {
+            _assemblyName = assemblyName;
+        }
+
+
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             //container.Register(AllTypes.FromAssemblyNamed("HiQo.StaffManagement.Web")
@@ -15,7 +27,7 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
             //    .Configure(configurer => configurer.Named(configurer.Implementation.Name))
             //    .LifestylePerWebRequest());
 
-            container.Register(Classes.FromAssemblyNamed("HiQo.StaffManagement.Web")
+            container.Register(Classes.FromAssemblyNamed(_assemblyName)
                 .BasedOn<IController>()
                 .LifestylePerWebRequest()
                 .Configure(x => x.Named(x.Implementation.FullName)));

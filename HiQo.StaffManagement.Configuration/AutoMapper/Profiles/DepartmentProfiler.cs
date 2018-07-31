@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HiQo.StaffManagement.DAL.Database.Entities;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
+using HiQo.StaffManagement.Web.Core.Models;
 
 namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
 {
@@ -19,6 +15,13 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
                 .ForMember(department => department.Categories, cfg => cfg.MapFrom(src => src.Categories))
                 .ForMember(department => department.Users, cfg => cfg.MapFrom(src => src.Users))
                 .ReverseMap();
+
+            CreateMap<DepartmentDto, DepartmentViewModel>()
+                .ForMember(department => department.DepartmentId, cfg => cfg.MapFrom(src => src.DepartmentId))
+                .ForMember(department => department.Name, cfg => cfg.MapFrom(src => src.Name))
+                .ReverseMap()
+                .ForMember(department => department.Categories, cfg => cfg.Ignore())
+                .ForMember(department => department.Users, cfg => cfg.Ignore());
 
         }
     }

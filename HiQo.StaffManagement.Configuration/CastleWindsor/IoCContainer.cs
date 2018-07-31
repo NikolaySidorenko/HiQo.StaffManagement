@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -14,11 +15,18 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
     {
         private static IWindsorContainer _container;
 
-        public static void Setup()
+        public static void Setup(string assemblyName)
         {
             _container = new WindsorContainer();
-            var s = FromAssembly.Named("HiQo.StaffManagement.Configuration");
-            _container =_container.Install(s);
+            
+            //var instaler = FromAssembly.Named(assembly.FullName);
+            //_container =_container.Install(instaler);
+
+            ControllersInstaller installer=new ControllersInstaller(assemblyName);
+            installer.Install(_container,null);
+
+            DependencyResolverInstaller resolver=new DependencyResolverInstaller();
+            resolver.Install(_container,null);
 
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);

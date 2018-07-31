@@ -1,7 +1,0 @@
-﻿@model IEnumerable<HiQo.StaffManagement.Domain.EntitiesDTO.PositionDto>
-<select id="position" class="form-control" >
-    @foreach (var item in Model)
-    {
-        <option value="@item.PositionId">@item.Name</option>
-    }
-</select>

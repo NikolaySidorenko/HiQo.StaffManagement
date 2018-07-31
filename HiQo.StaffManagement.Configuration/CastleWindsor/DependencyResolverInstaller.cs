@@ -42,9 +42,11 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
                 .LifestylePerWebRequest());
             container.Register(Component.For<IGradeService>().ImplementedBy(typeof(GradeService))
                 .LifestylePerWebRequest());
-            container.Register(Component.For<IRoleSrivice>().ImplementedBy(typeof(RoleService))
+            container.Register(Component.For<IRoleSerivice>().ImplementedBy(typeof(RoleService))
                 .LifestylePerWebRequest());
             container.Register(Component.For<IUpsertUserService>().ImplementedBy(typeof(UpsertUserService))
+                .LifestylePerWebRequest());
+            container.Register(Component.For<ISharedService>().ImplementedBy(typeof(SharedService))
                 .LifestylePerWebRequest());
 
             container.Register(Component.For<CompanyContext>().LifestylePerWebRequest());

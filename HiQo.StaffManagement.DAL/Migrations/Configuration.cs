@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.Migrations;
-using System.Linq;
 using HiQo.StaffManagement.DAL.Database;
-using HiQo.StaffManagement.DAL.Database.Entities;
 
 namespace HiQo.StaffManagement.DAL.Migrations
 {

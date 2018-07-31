@@ -13,7 +13,7 @@ namespace HiQo.StaffManagement.Web.Controllers
 {
     public class UserController : Controller
     {
-        private IUpsertUserService _upsertService;
+        private readonly IUpsertUserService _upsertService;
 
 
         public UserController(IUpsertUserService upsertService)
@@ -62,6 +62,7 @@ namespace HiQo.StaffManagement.Web.Controllers
             SelectList positionList = new SelectList(info.Positions, "PositionId", "Name");
             SelectList gradeList = new SelectList(Mapper.Map<IEnumerable<GradeViewModel>>(info.Grades), "GradeId", "FullName");
             SelectList roleList=new SelectList(info.Roles,"RoleId","Name");
+
             ViewBag.Categories = categoriesList;
             ViewBag.Positions = positionList;
             ViewBag.Grades = gradeList;
@@ -75,6 +76,7 @@ namespace HiQo.StaffManagement.Web.Controllers
         public ActionResult UpsertProfile(CreateEditUser user)
         {
             var us = Mapper.Map<UserDto>(user);
+
             if(us.UserId!=0)
                 _upsertService.Update(us);
             else
@@ -88,13 +90,6 @@ namespace HiQo.StaffManagement.Web.Controllers
         {
             var categories = _upsertService.GetCategoriesByDepartmentId(id);
             return PartialView("PartialEditCategories",categories);
-        }
-
-        [HttpGet]
-        public ActionResult PartialEditPositions(int id)
-        {
-            var positions = _upsertService.GetPositinsByCategoryId(id);
-            return PartialView("PartialEditPositions",positions);
         }
 
     }

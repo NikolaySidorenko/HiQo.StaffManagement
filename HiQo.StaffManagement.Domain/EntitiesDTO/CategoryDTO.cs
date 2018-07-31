@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
@@ -19,6 +15,7 @@ namespace HiQo.StaffManagement.Domain.EntitiesDTO
         public virtual ICollection<PositionDto> Positions { get; set; }
 
         public virtual ICollection<UserDto> Users { get; set; }
+
 
         public CategoryDto()
         {

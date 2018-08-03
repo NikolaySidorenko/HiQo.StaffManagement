@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HiQo.StaffManagement.Domain.EntitiesDTO;
-
-namespace HiQo.StaffManagement.Web.Core.Models
+﻿namespace HiQo.StaffManagement.Web.Core.Models
 {
     public class CategoryViewModel
     {
@@ -15,6 +8,5 @@ namespace HiQo.StaffManagement.Web.Core.Models
 
         public int DepartmentId { get; set; }
 
-        public SharedInfoDto SharedInfo { get; set; }
     }
 }

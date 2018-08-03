@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using HiQo.StaffManagement.Web.Core.FluentValidators;
 
 namespace HiQo.StaffManagement.Web.Core.Models
 {
+    [FluentValidation.Attributes.Validator(typeof(UserValidator))]
     public class CreateEditUser
     {
         public int UserId { get; set; }

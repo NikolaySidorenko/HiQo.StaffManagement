@@ -22,7 +22,6 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
                 .ForMember(category => category.Name, cfg => cfg.MapFrom(src => src.Name))
                 .ForMember(category => category.CategoryId, cfg => cfg.MapFrom(src => src.CategoryId))
                 .ForMember(category => category.DepartmentId, cfg => cfg.MapFrom(src => src.DepartmentId))
-                .ForMember(dest => dest.SharedInfo, cfg => cfg.Ignore())
                 .ReverseMap();
         }
     }

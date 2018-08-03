@@ -10,16 +10,16 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
     {
         private readonly IPositionService _positionService;
         private readonly ISharedService _sharedService;
-        private Dictionary<string, string> _partialViewDictionary;
+        private Dictionary<string, string> _partialViewByUrl;
         
 
         public CommonController(IPositionService positionService, ISharedService sharedService)
         {
             _positionService = positionService;
             _sharedService = sharedService;
-            _partialViewDictionary = new Dictionary<string, string>();
-            _partialViewDictionary.Add("Positions","PartialPositionIndex");
-            _partialViewDictionary.Add("Position", "PartialPositionUpsert");
+            _partialViewByUrl = new Dictionary<string, string>();
+            _partialViewByUrl.Add("Positions","PartialPositionIndex");
+            _partialViewByUrl.Add("Position", "PartialPositionUpsert");
         }
 
         // GET: Admin/Common
@@ -32,8 +32,10 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         {
             var positions = _positionService.GetAll();
             var path= HttpContext.Request.Url.LocalPath;
+
             ViewBag.Partial = GetPartialViewName(path);
             ViewBag.Data = positions;
+
             return View("Index");
         }
 
@@ -41,7 +43,9 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         {
             var position = Mapper.Map<PositionViewModel>(_positionService.GetById(id));
             var info = _sharedService.GetSharedInfo();
+
             SelectList categories = new SelectList(info.Categories, "CategoryId", "Name");
+
             var path = HttpContext.Request.Url.LocalPath;
 
             ViewBag.Partial = GetPartialViewName(path);
@@ -55,8 +59,11 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         {
             ViewBag.Partial = "PartialPositionUpsert";
             var info = _sharedService.GetSharedInfo();
+
             SelectList categories = new SelectList(info.Categories, "CategoryId", "Name");
+
             ViewBag.Categories = categories;
+
             return View("Index");
         }
 
@@ -64,7 +71,8 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         private string GetPartialViewName(string path)
         {
             var paramsList = path.Split('/');
-            var name = _partialViewDictionary[paramsList[3]];
+            var name = _partialViewByUrl[paramsList[3]];
+
             return name;
         }
 

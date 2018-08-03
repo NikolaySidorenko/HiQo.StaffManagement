@@ -1,7 +1,6 @@
 ﻿@model HiQo.StaffManagement.Web.Core.Models.CreateEditUser
 @{
     ViewBag.Title = "Staff";
-    ViewBag.Date = Model.DateOfBirth.ToString("MM/dd/yyyy");
 }
 
 
@@ -9,25 +8,24 @@
 {
      <h3>New user</h3>
 }
-else
-{
-     <h3>@Model.FirstName @Model.LastName</h3>
-}
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             @using (Html.BeginForm("UpsertProfile", "User", FormMethod.Post))
             {
+                <br/>
                 @Html.HiddenFor(user => user.UserId)
                 <p>@Html.LabelFor(user => user.FirstName, "First Name:")</p>
                 <p>@Html.EditorFor(user => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user=>user.FirstName)</p>
+
                 <p>@Html.LabelFor(user => user.LastName, "Last Name:")</p>
                 <p>@Html.EditorFor(user => user.LastName, new { htmlAttributes = new { @class = "form-control" } })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user=>user.FirstName)</p>
                 <p>@Html.LabelFor(user => user.UserName, "User Name:")</p>
                 <p>@Html.EditorFor(user => user.UserName, new { htmlAttributes = new { @class = "form-control" } })</p>
                 <p>@Html.LabelFor(user => user.DateOfBirth, "Date of birth:")</p>
                 <p>@Html.EditorFor(user => user.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = "1950-06-01", @max = "2018-07-20"} })</p>
-
                 <hr />
                 <p>@Html.LabelFor(user => user.DepartmentId, "Department:")</p>
                 <p>@Html.DropDownListFor(user => user.DepartmentId, ViewBag.Departments as SelectList, new { @class = "form-control", @id = "department" })</p>
@@ -44,9 +42,6 @@ else
         </div>
     </div>
 </div>
-
-
-
 
 @section scripts
 {

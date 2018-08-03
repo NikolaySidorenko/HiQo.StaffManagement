@@ -7,12 +7,16 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private ICategoryService _service;
+        private readonly ICategoryService _service;
+        private readonly ISharedService _sharedService;
 
-        public CategoryController(ICategoryService service)
+        public CategoryController(ICategoryService service, ISharedService sharedService)
         {
             _service = service;
+            _sharedService = sharedService;
         }
+
+
 
         // GET: Category
         public ActionResult Index()
@@ -24,7 +28,7 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var info = _service.GetSharedInfo();
+            var info = _sharedService.GetSharedInfo();
             SelectList departments = new SelectList(info.Departments, "DepartmentId", "Name");
             ViewBag.Departments = departments;
             return View("Upsert",null);
@@ -34,7 +38,8 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var category = Mapper.Map<CategoryViewModel>(_service.GetById(id));
-            SelectList departments=new SelectList(category.SharedInfo.Departments,"DepartmentId","Name");
+            var info = _sharedService.GetSharedInfo();
+            SelectList departments=new SelectList(info.Departments,"DepartmentId","Name");
             ViewBag.Departments = departments;
 
             return View("Upsert");

@@ -10,12 +10,10 @@ namespace HiQo.StaffManagement.Domain.Service
     public class CategoryService:ICategoryService
     {
         private readonly ICategoryRepositiry _repository;
-        private readonly ISharedService _service;
 
-        public CategoryService(ICategoryRepositiry repositiry, ISharedService service)
+        public CategoryService(ICategoryRepositiry repositiry)
         {
             _repository = repositiry;
-            _service = service;
         }
 
         public IEnumerable<CategoryDto> GetAll()
@@ -30,18 +28,15 @@ namespace HiQo.StaffManagement.Domain.Service
 
         public IEnumerable<CategoryDto> GetByDepartmentId(int id)
         {
-            var categories=  _repository.GetAll<CategoryDto>().Where(c=>c.DepartmentId==id);
-            return categories;
+            return  _repository.GetAll<CategoryDto>().Where(c=>c.DepartmentId==id);  
         }
 
         public void Upsert(CategoryDto entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public SharedInfoDto GetSharedInfo()
-        {
-            return _service.GetSharedInfo();
+            if(entity.CategoryId==0)
+                _repository.Create(entity);
+            else
+                _repository.Update(entity);
         }
     }
 }

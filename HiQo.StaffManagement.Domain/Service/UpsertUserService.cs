@@ -7,10 +7,10 @@ namespace HiQo.StaffManagement.Domain.Service
 {
     public class UpsertUserService:IUpsertUserService
     {
-        private IUserRepositiry _userRepositiry;
-        private ICategoryService _categoryService;
-        private IPositionService _positionService;
-        private ISharedService _sharedService;
+        private readonly IUserRepositiry _userRepositiry;
+        private readonly ICategoryService _categoryService;
+        private readonly IPositionService _positionService;
+        private readonly ISharedService _sharedService;
 
         public UpsertUserService(IUserRepositiry userRepositiry, ICategoryService categoryService, IPositionService positionService, ISharedService sharedService)
         {

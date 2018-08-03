@@ -9,6 +9,5 @@ namespace HiQo.StaffManagement.Domain.Service.Interfaces
         CategoryDto GetById(int id);
         IEnumerable<CategoryDto> GetByDepartmentId(int id);
         void Upsert(CategoryDto entity);
-        SharedInfoDto GetSharedInfo();
     }
 }

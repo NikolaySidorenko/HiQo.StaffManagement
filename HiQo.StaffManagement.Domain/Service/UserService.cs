@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
 using HiQo.StaffManagement.Domain.Repositories;
 using HiQo.StaffManagement.Domain.Service.Interfaces;
@@ -26,9 +27,7 @@ namespace HiQo.StaffManagement.Domain.Service
 
         public void Update(UserDto user)
         {
-            var us = _repositiry.GetById<UserDto>(user.UserId);
-            us = user;
-            _repositiry.Update<UserDto>(us);
+            _repositiry.Update(user);
             _repositiry.SaveChanges();
         }
     }

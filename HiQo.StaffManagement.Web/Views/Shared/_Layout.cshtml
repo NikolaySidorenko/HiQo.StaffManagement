@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@using System.Security.Claims
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,6 +9,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+@{
+    var claims = User.Identity as ClaimsIdentity;
+}
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -20,8 +25,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="margin-left: 50px">
-                    <li>@Html.ActionLink("Staff", "Index", "User")</li>
-                    <li>@Html.ActionLink("Departments", "Index", "Department")</li>
+                    <li>@Html.ActionLink("Staff", "Index", "User",new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Admin area", "Index", "Common", new { area = "Admin" }, null)</li>
                 </ul>
             </div>
         </div>
@@ -31,12 +36,15 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - HiQo Staff Management</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+            <p>Wellcome @claims.Name @claims.Claims.FirstOrDefault().Value @claims.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.Role).Value</p>
+            }
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*@Scripts.Render("~/bundles/Content")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

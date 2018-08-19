@@ -1,0 +1,23 @@
+﻿@model HiQo.StaffManagement.Web.Core.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <p>@Html.LabelFor(user=>user.Email)</p>
+    <p>@Html.EditorFor(user=>user.Email, new { htmlAttributes = new { @class = "form-control" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user=>user.Email)</p>
+
+    <p>@Html.LabelFor(user=>user.Password)</p>
+    <p>@Html.EditorFor(user=>user.Password, new { htmlAttributes = new { @class = "form-control",@type="password" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user=>user.Password)</p>
+
+    <p>@Html.LabelFor(user=>user.ConfirmPassword)</p>
+    <p>@Html.EditorFor(user=>user.ConfirmPassword, new { htmlAttributes = new { @class = "form-control",@type="password" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user=>user.ConfirmPassword)</p>
+
+    <input type="submit" value="Register"/>
+}

@@ -19,25 +19,3 @@
         @Html.Partial(ViewBag.Partial as string,ViewBag.Data as object)
     }
 </div>
-
-
-@*@section scripts
-{
-<script type="text/javascript">
-        $(function() {
-
-            $('#pos').change(function() {
-                var id = $(this).val();
-                alert(id);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("PartialEditCategories")/' + id,
-                    success: function(data) {
-                        $('#category').replaceWith(data);
-                    }
-                });
-            });
-        });
-</script>
-}
-@/*Html.ActionLink("Positions", "Positions", "Common", new { area = "Admin" }, new { htmlAttributes = new { @class = "form-control" } })*/*@

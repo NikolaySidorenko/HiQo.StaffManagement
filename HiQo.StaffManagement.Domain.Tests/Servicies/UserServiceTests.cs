@@ -26,19 +26,19 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
         {
             //Arrange
             int userId = 2;
-            UserDto user = new UserDto { UserId = userId};
+            UserDto user = new UserDto { Id = userId};
             A.CallTo(() => _fakeRepositiry.GetById<UserDto>(userId)).Returns(user);
             //Act
             var userDto= _service.GetById(userId);
             //Assert
-            Assert.Equal(userId,userDto.UserId);
+            Assert.Equal(userId,userDto.Id);
         }
 
         [Fact]
         public void GetAll_Nothing_TwoUsers()
         {
             
-            List<UserDto> users = new List<UserDto>{new UserDto {UserId = 1}, new UserDto {UserId = 2}};
+            List<UserDto> users = new List<UserDto>{new UserDto { Id = 1}, new UserDto { Id = 2}};
             var idArray = new[] {1, 2};
             A.CallTo(() => _fakeRepositiry.GetAll<UserDto>()).Returns(users);
 
@@ -48,7 +48,7 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
 
             for (int i = 0; i < users.Count(); i++)
             {
-                Assert.Equal(idArray[i],usersDto[i].UserId);
+                Assert.Equal(idArray[i],usersDto[i].Id);
             }
         }
 
@@ -56,7 +56,7 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
         public void Update_UserDto_MustHappened()
         {
             //Arrange
-            UserDto userDto=new UserDto(){UserId = 1};
+            UserDto userDto=new UserDto(){ Id = 1};
             //Act
             _service.Update(userDto);
             //Assert

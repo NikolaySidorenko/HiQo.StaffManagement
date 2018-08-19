@@ -19,6 +19,10 @@ namespace HiQo.StaffManagement.Web.Filters
             }
 
             var exception = filterContext.Exception;
+            while (exception.InnerException!=null)
+            {
+                exception = exception.InnerException;
+            }
 
             if (!ExceptionType.IsInstanceOfType(exception)) return;
 

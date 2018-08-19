@@ -1,4 +1,4 @@
-﻿@model HiQo.StaffManagement.Web.Core.Models.CreateEditUser
+﻿@model HiQo.StaffManagement.Web.Core.Models.UpsertUser
 @{
     ViewBag.Title = "Staff";
 }
@@ -13,53 +13,59 @@
         <div class="col-md-6">
             @using (Html.BeginForm("UpsertProfile", "User", FormMethod.Post))
             {
-                <br/>
+                <p>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</p>
+                <br />
                 @Html.HiddenFor(user => user.UserId)
+                
                 <p>@Html.LabelFor(user => user.FirstName, "First Name:")</p>
                 <p>@Html.EditorFor(user => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })</p>
-                <p class="text-danger">@Html.ValidationMessageFor(user=>user.FirstName)</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.FirstName)</p>
 
                 <p>@Html.LabelFor(user => user.LastName, "Last Name:")</p>
                 <p>@Html.EditorFor(user => user.LastName, new { htmlAttributes = new { @class = "form-control" } })</p>
-                <p class="text-danger">@Html.ValidationMessageFor(user=>user.FirstName)</p>
-                <p>@Html.LabelFor(user => user.UserName, "User Name:")</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.LastName)</p>
+
+                <p>@Html.LabelFor(user => user.UserName, "Username:")</p>
                 <p>@Html.EditorFor(user => user.UserName, new { htmlAttributes = new { @class = "form-control" } })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.UserName)</p>
+
                 <p>@Html.LabelFor(user => user.DateOfBirth, "Date of birth:")</p>
                 <p>@Html.EditorFor(user => user.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = "1950-06-01", @max = "2018-07-20"} })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.DateOfBirth)</p>
+
+                <p>@Html.LabelFor(user=>user.Email)</p>
+                <p>@Html.EditorFor(user=>user.Email, new { htmlAttributes = new { @class = "form-control" } })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user=>user.Email)</p>
+
+                 if (HttpContext.Current.User.IsInRole("SuperAdmin"))
+                 {
+                     <p>@Html.LabelFor(user=>user.Password)</p>
+                     <p>@Html.EditorFor(user=>user.Password, new { htmlAttributes = new { @class = "form-control" } })</p>
+                     <p class="text-danger">@Html.ValidationMessageFor(user=>user.Password)</p>
+                 }
+                 else
+                 {
+                     @Html.HiddenFor(user=>user.Password)
+                 }
+
                 <hr />
                 <p>@Html.LabelFor(user => user.DepartmentId, "Department:")</p>
                 <p>@Html.DropDownListFor(user => user.DepartmentId, ViewBag.Departments as SelectList, new { @class = "form-control", @id = "department" })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.DepartmentId)</p>
                 <p>@Html.LabelFor(user => user.CategoryId, "Category:")</p>
                 <p>@Html.DropDownListFor(user => user.CategoryId, ViewBag.Categories as SelectList, new { @class = "form-control", @id = "category" })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.CategoryId)</p>
                 <p>@Html.LabelFor(user => user.PositionId, "Position:")</p>
                 <p>@Html.DropDownListFor(user => user.PositionId, ViewBag.Positions as SelectList, new { @class = "form-control", @id = "position" })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.PositionId)</p>
                 <p>@Html.LabelFor(user => user.GradeId, "Grade:")</p>
                 <p>@Html.DropDownListFor(user => user.GradeId, ViewBag.Grades as SelectList, new { @class = "form-control" })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.GradeId)</p>
                 <p>@Html.LabelFor(user => user.RoleId, "Role:")</p>
                 <p>@Html.DropDownListFor(user => user.RoleId, ViewBag.Roles as SelectList, new { @class = "form-control" })</p>
+                <p class="text-danger">@Html.ValidationMessageFor(user => user.RoleId)</p>
                 <input type="submit" value="Save" class="btn btn-default" />
             }
         </div>
     </div>
 </div>
-
-@section scripts
-{
-    <script type="text/javascript">
-        $(function() {
-
-            $('#department').change(function() {
-                var id = $(this).val();
-                alert(id);
-                $.ajax({
-                    type: 'GET',
-                    url: '@Url.Action("PartialEditCategories")/' + id,
-                    success: function(data) {
-                        $('#category').replaceWith(data);
-                    }
-                });
-            });
-        });
-    </script>
-}
-

@@ -6,20 +6,22 @@ using HiQo.StaffManagement.Web.Core.Models;
 
 namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CommonController : Controller
     {
         private readonly IPositionService _positionService;
+        private readonly IDepartmentService _departmentService;
         private readonly ISharedService _sharedService;
         private Dictionary<string, string> _partialViewByUrl;
         
 
-        public CommonController(IPositionService positionService, ISharedService sharedService)
+        public CommonController(IPositionService positionService,IDepartmentService departmentService, ISharedService sharedService)
         {
             _positionService = positionService;
             _sharedService = sharedService;
-            _partialViewByUrl = new Dictionary<string, string>();
-            _partialViewByUrl.Add("Positions","PartialPositionIndex");
-            _partialViewByUrl.Add("Position", "PartialPositionUpsert");
+            _departmentService = departmentService;
+
+            InitializePartialViewDictionary();
         }
 
         // GET: Admin/Common
@@ -30,10 +32,15 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 
         public ActionResult Positions()
         {
-            var positions = _positionService.GetAll();
-            var path= HttpContext.Request.Url.LocalPath;
+            var path = HttpContext.Request.Url.LocalPath;
+            var viewName = GetPartialViewName(path);
+            if (viewName == null)
+            {
+                return HttpNotFound(nameof(viewName));
+            }
 
-            ViewBag.Partial = GetPartialViewName(path);
+            var positions = _positionService.GetAll();
+            ViewBag.Partial = viewName;
             ViewBag.Data = positions;
 
             return View("Index");
@@ -41,14 +48,18 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 
         public ActionResult Position(int id)
         {
+            var path = HttpContext.Request.Url.LocalPath;
+            var viewName = GetPartialViewName(path);
+            if (viewName == null)
+            {
+                return HttpNotFound(nameof(viewName));
+            }
+
             var position = Mapper.Map<PositionViewModel>(_positionService.GetById(id));
             var info = _sharedService.GetSharedInfo();
 
             SelectList categories = new SelectList(info.Categories, "CategoryId", "Name");
-
-            var path = HttpContext.Request.Url.LocalPath;
-
-            ViewBag.Partial = GetPartialViewName(path);
+            ViewBag.Partial = viewName;
             ViewBag.Data = position;
             ViewBag.Categories = categories;
 
@@ -76,5 +87,13 @@ namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
             return name;
         }
 
+        private void InitializePartialViewDictionary()
+        {
+            _partialViewByUrl = new Dictionary<string, string>();
+            _partialViewByUrl.Add("Positions", "PartialPositionIndex");
+            _partialViewByUrl.Add("Position", "PartialPositionUpsert");
+            _partialViewByUrl.Add("Departments", "DepartmentsPartialView");
+            _partialViewByUrl.Add("Department", "UpsertDepartmentPartialView");
+        }
     }
 }

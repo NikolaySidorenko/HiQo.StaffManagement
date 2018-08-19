@@ -33,12 +33,12 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
         public void GetById_()
         {
             int userId = 1;
-            var user=new UserDto(){UserId = userId};
+            var user=new UserDto(){Id = userId};
             A.CallTo(() => _userRepositiry.GetById<UserDto>(userId)).Returns(user);
 
             var userDto = _service.GetById(userId);
 
-            Assert.Equal(userId,userDto.UserId);
+            Assert.Equal(userId,userDto.Id);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
         [Fact]
         public void Create_UserDto_MustHappened()
         {
-            var user=new UserDto{UserId = 1};
+            var user=new UserDto{Id = 1};
 
             _service.Create(user);
 
@@ -90,7 +90,7 @@ namespace HiQo.StaffManagement.Domain.Tests.Servicies
         [Fact]
         public void Update_UserDto_MustHappened()
         {
-            var user = new UserDto { UserId = 1 };
+            var user = new UserDto { Id = 1 };
 
             _service.Create(user);
 

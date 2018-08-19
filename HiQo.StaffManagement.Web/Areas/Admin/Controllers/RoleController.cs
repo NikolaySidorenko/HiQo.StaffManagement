@@ -3,6 +3,7 @@ using HiQo.StaffManagement.Domain.Service.Interfaces;
 
 namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class RoleController : Controller
     {
         private IRoleSerivice _serivice;

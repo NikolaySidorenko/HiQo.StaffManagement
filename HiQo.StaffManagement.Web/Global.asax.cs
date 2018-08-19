@@ -22,12 +22,11 @@ namespace HiQo.StaffManagement.Web
             BundleConfig.RegisterCssBundles(BundleTable.Bundles);
             BundleConfig.RegisterJsBundles(BundleTable.Bundles);
 
-            AutomapperConfiguration.ConfigureAutomapper();
+             AutomapperConfiguration.ConfigureAutomapper();
 
             var assembly = Assembly.GetExecutingAssembly();
             IoCContainer.Setup(assembly.GetName().Name);
-
-            FluentValidationModelValidatorProvider.Configure();
+            
         }
 
     }

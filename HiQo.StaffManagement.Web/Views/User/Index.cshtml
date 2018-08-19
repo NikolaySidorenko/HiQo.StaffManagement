@@ -17,14 +17,20 @@
     <tbody class="tab-content">
         @foreach (var user in Model)
         {
-            <tr>
-                <td>@user.FirstName</td>
-                <td>@user.LastName</td>
-                <td>@user.UserName</td>           
-                <td>@user.Category.Name</td>
-                <td>@user.Position.Name</td>
-                <td><a class="btn btn-default" href="~/User/Profile/@user.UserId">Information &raquo;</a></td>
-            </tr>
+        <tr>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.UserName</td>
+            <td>@user.Category.Name</td>
+            <td>@user.Position.Name</td>
+            <td><a class="btn btn-default" href="~/User/Profile/@user.Id">Information &raquo;</a></td>
+            <td>
+                @using (Html.BeginForm("Delete", "User", new { id = user.Id }, FormMethod.Post))
+                {
+                    <input class="form-control" type="submit" value="Delete"/>
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>

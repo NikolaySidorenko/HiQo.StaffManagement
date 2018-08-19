@@ -3,6 +3,7 @@ using HiQo.StaffManagement.Domain.Service.Interfaces;
 
 namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class GradeController : Controller
     {
         private IGradeService _service;

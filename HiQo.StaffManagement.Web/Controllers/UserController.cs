@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation;
 using HiQo.StaffManagement.Domain.EntitiesDTO;
 using HiQo.StaffManagement.Domain.Service.Interfaces;
 using HiQo.StaffManagement.Web.Core.Models;
@@ -10,10 +11,12 @@ namespace HiQo.StaffManagement.Web.Controllers
     public class UserController : Controller
     {
         private readonly IUpsertUserService _upsertService;
+        private readonly IValidatorFactory _factory;
 
-        public UserController(IUpsertUserService upsertService)
+        public UserController(IUpsertUserService upsertService,IValidatorFactory factory)
         {
             _upsertService = upsertService;
+            _factory = factory;
         }
 
         // GET: User
@@ -30,39 +33,55 @@ namespace HiQo.StaffManagement.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Update(int id)
         {
             var upsertUser = _upsertService.GetById(id);
             CreateSelectLists();
-            var user = Mapper.Map<CreateEditUser>(upsertUser);
+            var user = Mapper.Map<UpsertUser>(upsertUser);
             return View("UpsertProfile",user);
         }
 
-        public ActionResult Create()
+        [HttpGet]
+        //[Authorize(Roles = "SuperAdmin")]
+        public ActionResult Create(UpsertUser user=null)
         {
             CreateSelectLists();
-            return View("UpsertProfile",null);
+            return View("UpsertProfile",user);
         }
 
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _upsertService.DeleteById(id);
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
-        public ActionResult UpsertProfile(CreateEditUser user)
-        { 
-            if (ModelState.IsValid)
+        public ActionResult UpsertProfile(UpsertUser user)
+        {
+
+            var validator = _factory.GetValidator<UpsertUser>();
+            var result = validator.Validate(user);
+            if (result.IsValid)
             {
                 var userDto = Mapper.Map<UserDto>(user);
 
-                if (userDto.UserId != 0)
+                if (userDto.Id != 0)
                     _upsertService.Update(userDto);
                 else
                     _upsertService.Create(userDto);
             }
             else
             {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName,error.ErrorMessage);
+                }
+               
                 CreateSelectLists();
                 return View("UpsertProfile", user);
             }
-
             return RedirectToAction("Index");
         }
 

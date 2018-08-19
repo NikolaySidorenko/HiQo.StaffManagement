@@ -5,6 +5,7 @@ using HiQo.StaffManagement.Web.Core.Models;
 
 namespace HiQo.StaffManagement.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _service;

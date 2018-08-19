@@ -1,0 +1,16 @@
+﻿@model HiQo.StaffManagement.Web.Core.Models.LogInViewModel
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<h2>LogIn</h2>
+
+@using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
+{
+    <p>@Html.LabelFor(user=>user.Email)</p>
+    <p>@Html.EditorFor(user=>user.Email)</p>
+    <p>@Html.LabelFor(user=>user.Password)</p>
+    <p>@Html.EditorFor(user=>user.Password)</p>
+    <input type="submit" class="form-control" value="LogIn"/>
+}
+

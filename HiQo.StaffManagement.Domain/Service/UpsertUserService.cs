@@ -42,6 +42,16 @@ namespace HiQo.StaffManagement.Domain.Service
            _userRepositiry.SaveChanges();
         }
 
+        public UserDto GetToLogIn(string email, string password)
+        {
+            return _userRepositiry.GetToLogIn(email, password);
+        }
+
+        public int GetLastId()
+        {
+            return _userRepositiry.GetLastId();
+        }
+
         public IEnumerable<CategoryDto> GetCategoriesByDepartmentId(int id)
         {
             return _categoryService.GetByDepartmentId(id);
@@ -55,6 +65,11 @@ namespace HiQo.StaffManagement.Domain.Service
         public SharedInfoDto GetSharedInfo()
         {
             return _sharedService.GetSharedInfo();
+        }
+
+        public void DeleteById(int id)
+        {
+            _userRepositiry.DeleteById<UserDto>(id);
         }
     }
 }

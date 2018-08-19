@@ -1,16 +1,21 @@
 ﻿using System;
+using Microsoft.AspNet.Identity;
 
 namespace HiQo.StaffManagement.Domain.EntitiesDTO
 {
-    public class UserDto
+    public class UserDto : IUser<int>
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
         public string UserName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.Domain.Repositories
 {
@@ -15,5 +16,7 @@ namespace HiQo.StaffManagement.Domain.Repositories
         void Update<TDto>(TDto entity) where TDto : class;
 
         void SaveChanges();
+
+        Task SaveChangesAsync();
     }
 }

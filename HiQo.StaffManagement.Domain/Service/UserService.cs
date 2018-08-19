@@ -30,5 +30,8 @@ namespace HiQo.StaffManagement.Domain.Service
             _repositiry.Update(user);
             _repositiry.SaveChanges();
         }
+
+        
+        
     }
 }

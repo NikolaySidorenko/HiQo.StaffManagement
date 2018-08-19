@@ -1,11 +1,16 @@
 ﻿using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using FluentValidation;
+using FluentValidation.Mvc;
 using HiQo.StaffManagement.DAL.Database;
 using HiQo.StaffManagement.DAL.Repositories;
 using HiQo.StaffManagement.Domain.Repositories;
 using HiQo.StaffManagement.Domain.Service;
 using HiQo.StaffManagement.Domain.Service.Interfaces;
+using HiQo.StaffManagement.Web.Core.Auth;
+using HiQo.StaffManagement.Web.Core.Auth.Interfaces;
 
 namespace HiQo.StaffManagement.Configuration.CastleWindsor
 {
@@ -16,17 +21,27 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
         public static void Setup(string assemblyName)
         {
             _container = new WindsorContainer();
-           
-            ControllersInstaller installer=new ControllersInstaller(assemblyName);
-            installer.Install(_container,null);
+
+            ControllersInstaller installer = new ControllersInstaller(assemblyName);
+            installer.Install(_container, null);
 
             SetupRepositoryDependencies();
             SetupServiceDependencies();
             SetupDbContextDependencies();
-           
+                
+
+            var validatorInstaller = new ValidatorInstaller();
+            validatorInstaller.Install(_container, null);
+
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+
+            FluentValidationModelValidatorProvider.Configure(provider =>
+            {
+                provider.ValidatorFactory = _container.Resolve<IValidatorFactory>();
+            });
         }
+
 
         private static void SetupRepositoryDependencies()
         {
@@ -62,11 +77,15 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
                 .LifestylePerWebRequest());
             _container.Register(Component.For<ISharedService>().ImplementedBy(typeof(SharedService))
                 .LifestylePerWebRequest());
+            //_container.Register(Component.For<IUserManager>().ImplementedBy<ApplicationUserManager>().LifestylePerWebRequest());
+            //_container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>().LifestylePerWebRequest());
         }
 
         private static void SetupDbContextDependencies()
         {
             _container.Register(Component.For<CompanyContext>().LifestylePerWebRequest());
         }
+
+        
     }
 }

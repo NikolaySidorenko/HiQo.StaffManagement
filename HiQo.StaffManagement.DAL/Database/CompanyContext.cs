@@ -47,10 +47,11 @@ namespace HiQo.StaffManagement.DAL.Database
 
         private void SetupUserConfig(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.UserId);
+            modelBuilder.Entity<User>().HasKey(u => u.Id);
             modelBuilder.Entity<User>().Property(u => u.FirstName).HasMaxLength(40).IsRequired();
             modelBuilder.Entity<User>().Property(u => u.LastName).HasMaxLength(40).IsRequired();
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(40).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Email).HasMaxLength(40).IsRequired();
             modelBuilder.Entity<User>().Property(u => u.DateOfBirth).IsRequired();
         }
 

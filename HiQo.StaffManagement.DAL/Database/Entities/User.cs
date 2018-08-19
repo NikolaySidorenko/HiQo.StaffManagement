@@ -1,16 +1,21 @@
 ﻿using System;
+using Microsoft.AspNet.Identity;
 
 namespace HiQo.StaffManagement.DAL.Database.Entities
 {
-    public class User
+    public class User : IUser<int>
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
         public string UserName { get; set; }
+
+        public string Email { get; set; }
+
+        public string PasswordHash { get; set; }
 
         public DateTime DateOfBirth { get; set; }
     

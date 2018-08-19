@@ -10,10 +10,12 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
         public UserProfiler()
         {
             CreateMap<User, UserDto>()
-                .ForMember(userDto => userDto.UserId, cfg => cfg.MapFrom(src => src.UserId))
+                .ForMember(userDto => userDto.Id, cfg => cfg.MapFrom(src => src.Id))
                 .ForMember(userDto => userDto.FirstName,cfg=>cfg.MapFrom(src=>src.FirstName))
                 .ForMember(userDto => userDto.LastName, cfg => cfg.MapFrom(src => src.LastName))
                 .ForMember(userDto => userDto.UserName, cfg => cfg.MapFrom(src => src.UserName))
+                .ForMember(userDto => userDto.Email, cfg => cfg.MapFrom(src => src.Email))
+                .ForMember(userDto => userDto.Password, cfg => cfg.MapFrom(src => src.PasswordHash))
                 .ForMember(userDto => userDto.DateOfBirth, cfg => cfg.MapFrom(src => src.DateOfBirth))
                 .ForMember(userDto => userDto.DepartmentId, cfg => cfg.MapFrom(src => src.DepartmentId))
                 .ForMember(userDto => userDto.Department, cfg => cfg.MapFrom(src => src.Department))
@@ -29,11 +31,13 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
 
 
 
-            CreateMap<UserDto, CreateEditUser>()
-                .ForMember(user => user.UserId, cfg => cfg.MapFrom(dto => dto.UserId))
+            CreateMap<UserDto, UpsertUser>()
+                .ForMember(user => user.UserId, cfg => cfg.MapFrom(dto => dto.Id))
                 .ForMember(user => user.FirstName, cfg => cfg.MapFrom(dto => dto.FirstName))
                 .ForMember(user => user.LastName, cfg => cfg.MapFrom(dto => dto.LastName))
                 .ForMember(user => user.UserName, cfg => cfg.MapFrom(dto => dto.UserName))
+                .ForMember(user => user.Email, cfg => cfg.MapFrom(dto => dto.Email))
+                .ForMember(user => user.Password, cfg => cfg.MapFrom(dto => dto.Password))
                 .ForMember(user => user.DateOfBirth, cfg => cfg.MapFrom(dto => dto.DateOfBirth))
                 .ForMember(user => user.DepartmentId, cfg => cfg.MapFrom(dto => dto.DepartmentId))
                 .ForMember(user => user.CategoryId, cfg => cfg.MapFrom(dto => dto.CategoryId))
@@ -46,6 +50,12 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
                 .ForMember(userDto => userDto.Position, cfg => cfg.Ignore())
                 .ForMember(userDto => userDto.Grade, cfg => cfg.Ignore())
                 .ForMember(userDto => userDto.Role, cfg => cfg.Ignore());
+
+            CreateMap<RegisterViewModel, UpsertUser>()
+                .ForMember(user => user.Email, cfg => cfg.MapFrom(regUser => regUser.Email))
+                .ForMember(user => user.Password, cfg => cfg.MapFrom(regUser => regUser.Password));
+
+
         }
     }
 }

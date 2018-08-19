@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using HiQo.StaffManagement.DAL.Database;
 using HiQo.StaffManagement.DAL.Database.Entities;
@@ -89,6 +90,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity=DbContext.Users.Find(id);
                 DbContext.Users.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -96,6 +98,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity = DbContext.Departments.Find(id);
                 DbContext.Departments.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -103,6 +106,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity = DbContext.Categories.Find(id);
                 DbContext.Categories.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -110,6 +114,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity = DbContext.Positions.Find(id);
                 DbContext.Positions.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -117,6 +122,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity = DbContext.PositionLevels.Find(id);
                 DbContext.PositionLevels.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -124,6 +130,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 var entity = DbContext.Roles.Find(id);
                 DbContext.Roles.Remove(entity);
+                DbContext.SaveChanges();
                 return;
             }
 
@@ -170,7 +177,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             if (typeof(TDto) == typeof(UserDto))
             {
                 var user = Mapper.Map<User>(entity);
-                DbContext.Users.AddOrUpdate(us=>us.UserId,user);
+                DbContext.Users.AddOrUpdate(us=>us.Id,user);
                 return;
             }
 
@@ -214,6 +221,11 @@ namespace HiQo.StaffManagement.DAL.Repositories
         public void SaveChanges()
         {
             DbContext.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+           await DbContext.SaveChangesAsync();
         }
     }
 }

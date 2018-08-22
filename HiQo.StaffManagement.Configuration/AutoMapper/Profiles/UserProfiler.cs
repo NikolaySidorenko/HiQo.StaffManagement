@@ -51,9 +51,13 @@ namespace HiQo.StaffManagement.Configuration.AutoMapper.Profiles
                 .ForMember(userDto => userDto.Grade, cfg => cfg.Ignore())
                 .ForMember(userDto => userDto.Role, cfg => cfg.Ignore());
 
-            CreateMap<RegisterViewModel, UpsertUser>()
+            CreateMap<RegisterViewModel, UserDto>()
                 .ForMember(user => user.Email, cfg => cfg.MapFrom(regUser => regUser.Email))
-                .ForMember(user => user.Password, cfg => cfg.MapFrom(regUser => regUser.Password));
+                .ForMember(user => user.Password, cfg => cfg.MapFrom(regUser => regUser.Password))
+                .ForMember(user => user.FirstName, cfg => cfg.MapFrom(regUser => regUser.FirstName))
+                .ForMember(user => user.LastName, cfg => cfg.MapFrom(regUser => regUser.LastName))
+                .ForMember(user => user.DateOfBirth, cfg => cfg.MapFrom(regUser => regUser.DateOfBirth))
+                .ForMember(user => user.UserName, cfg => cfg.MapFrom(regUser => regUser.UserName));
 
 
         }

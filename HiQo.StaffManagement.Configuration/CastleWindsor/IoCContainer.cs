@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using FluentValidation;
@@ -28,7 +27,7 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
             SetupRepositoryDependencies();
             SetupServiceDependencies();
             SetupDbContextDependencies();
-                
+
 
             var validatorInstaller = new ValidatorInstaller();
             validatorInstaller.Install(_container, null);
@@ -77,15 +76,12 @@ namespace HiQo.StaffManagement.Configuration.CastleWindsor
                 .LifestylePerWebRequest());
             _container.Register(Component.For<ISharedService>().ImplementedBy(typeof(SharedService))
                 .LifestylePerWebRequest());
-            //_container.Register(Component.For<IUserManager>().ImplementedBy<ApplicationUserManager>().LifestylePerWebRequest());
-            //_container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>().LifestylePerWebRequest());
+            _container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>().LifestylePerWebRequest());
         }
 
         private static void SetupDbContextDependencies()
         {
             _container.Register(Component.For<CompanyContext>().LifestylePerWebRequest());
         }
-
-        
     }
 }

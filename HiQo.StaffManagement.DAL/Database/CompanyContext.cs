@@ -52,7 +52,6 @@ namespace HiQo.StaffManagement.DAL.Database
             modelBuilder.Entity<User>().Property(u => u.LastName).HasMaxLength(40).IsRequired();
             modelBuilder.Entity<User>().Property(u => u.UserName).HasMaxLength(40).IsRequired();
             modelBuilder.Entity<User>().Property(u => u.Email).HasMaxLength(40).IsRequired();
-            modelBuilder.Entity<User>().Property(u => u.DateOfBirth).IsRequired();
         }
 
         private void SetupPositionConfig(DbModelBuilder modelBuilder)
@@ -60,7 +59,6 @@ namespace HiQo.StaffManagement.DAL.Database
             modelBuilder.Entity<Position>().HasMany(p=>p.Users).WithRequired(u=>u.Position).HasForeignKey(u=>u.PositionId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Position>().HasKey(p => p.PositionId);
             modelBuilder.Entity<Position>().Property(p => p.Name).HasMaxLength(40).IsRequired();
-            
         }
 
         private void SetupPositionLevelConfig(DbModelBuilder modelBuilder)

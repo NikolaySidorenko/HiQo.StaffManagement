@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using HiQo.StaffManagement.Web.Core.FluentValidators;
 
 namespace HiQo.StaffManagement.Web.Core.Models
 {
-    [FluentValidation.Attributes.Validator(typeof(UserValidator))]
-    public class CreateEditUser
+    
+    public class UpsertUser
     {
         public int UserId { get; set; }
 
@@ -15,8 +13,10 @@ namespace HiQo.StaffManagement.Web.Core.Models
 
         public string UserName { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
         public DateTime DateOfBirth { get; set; }
 
         public int DepartmentId { get; set; }
@@ -29,5 +29,9 @@ namespace HiQo.StaffManagement.Web.Core.Models
 
         public int RoleId { get; set; }
 
+        public UpsertUser()
+        {
+            
+        }
     }
 }

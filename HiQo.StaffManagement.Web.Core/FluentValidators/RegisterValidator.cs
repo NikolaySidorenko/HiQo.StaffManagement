@@ -1,20 +1,16 @@
-﻿using System;
-using FluentValidation;
-using FluentValidation.Results;
-using HiQo.StaffManagement.Domain.Repositories;
+﻿using FluentValidation;
 using HiQo.StaffManagement.Web.Core.Models;
 
 namespace HiQo.StaffManagement.Web.Core.FluentValidators
 {
-
-    public class UserValidator:AbstractValidator<UpsertUser>
+    public class RegisterValidator : AbstractValidator<RegisterViewModel>
     {
-        private readonly IUserRepositiry _repositiry;
-
-        public UserValidator(IUserRepositiry repositiry)
+        public RegisterValidator()
         {
-            _repositiry = repositiry;
-            RuleFor(user => user.UserId).Must(id=>id>=0).WithMessage("ID must be greater than 0");
+            RuleFor(model => model.Email).NotEmpty().WithMessage("Email can not be empty").EmailAddress()
+                .WithMessage("Email must be valid");
+            RuleFor(model => model.Password).NotEmpty().WithMessage("Password can not be empty");
+            RuleFor(model => model.ConfirmPassword).NotEmpty().WithMessage("Feild can not be empty");
             RuleFor(user => user.FirstName).NotEmpty().WithMessage("Field cannot be empty")
                 .Length(1, 25).WithMessage("The length of the line should be in the range from 1 to 25")
                 .Matches(@"^[\p{L} \.\-]+$").WithMessage("The name must contain only letters");
@@ -25,14 +21,12 @@ namespace HiQo.StaffManagement.Web.Core.FluentValidators
                 .Length(1, 25).WithMessage("The length of the line should be in the range from 1 to 25")
                 .Matches(@"^[\p{L} \.\-]+$").WithMessage("The name must contain only letters");
             RuleFor(user => user.DateOfBirth).NotEmpty().WithMessage("Field cannot be empty");
-            RuleFor(user => user.Email).NotEmpty().WithMessage("Field cannot be empty");
-            RuleFor(user => user).Must(IsFullNameValid).WithMessage("User with this name already exists");
+            RuleFor(model => model).Must(IsPasswordsValid).WithMessage("Passwords must be equale");
         }
 
-        private bool IsFullNameValid(UpsertUser user)
+        private bool IsPasswordsValid(RegisterViewModel model)
         {
-            return _repositiry.IsValid(user.FirstName, user.LastName,user.UserId);
+            return model.ConfirmPassword.Equals(model.Password);
         }
-       
     }
 }

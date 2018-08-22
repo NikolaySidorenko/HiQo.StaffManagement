@@ -15,6 +15,8 @@ namespace HiQo.StaffManagement.Domain.EntitiesDTO
 
         public string Email { get; set; }
 
+        public string Salt { get; set; }
+
         public string Password { get; set; }
 
         public DateTime DateOfBirth { get; set; }

@@ -7,6 +7,7 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     <p>@Html.LabelFor(user=>user.Email)</p>
     <p>@Html.EditorFor(user=>user.Email, new { htmlAttributes = new { @class = "form-control" } })</p>
     <p class="text-danger">@Html.ValidationMessageFor(user=>user.Email)</p>
@@ -18,6 +19,22 @@
     <p>@Html.LabelFor(user=>user.ConfirmPassword)</p>
     <p>@Html.EditorFor(user=>user.ConfirmPassword, new { htmlAttributes = new { @class = "form-control",@type="password" } })</p>
     <p class="text-danger">@Html.ValidationMessageFor(user=>user.ConfirmPassword)</p>
+
+    <p>@Html.LabelFor(user => user.FirstName, "First Name:")</p>
+    <p>@Html.EditorFor(user => user.FirstName, new { htmlAttributes = new { @class = "form-control" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user => user.FirstName)</p>
+
+    <p>@Html.LabelFor(user => user.LastName, "Last Name:")</p>
+    <p>@Html.EditorFor(user => user.LastName, new { htmlAttributes = new { @class = "form-control" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user => user.LastName)</p>
+
+    <p>@Html.LabelFor(user => user.UserName, "Username:")</p>
+    <p>@Html.EditorFor(user => user.UserName, new { htmlAttributes = new { @class = "form-control" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user => user.UserName)</p>
+
+    <p>@Html.LabelFor(user => user.DateOfBirth, "Date of birth:")</p>
+    <p>@Html.EditorFor(user => user.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @type = "date", @min = "1950-06-01", @max = "2018-07-20" } })</p>
+    <p class="text-danger">@Html.ValidationMessageFor(user => user.DateOfBirth)</p>
 
     <input type="submit" value="Register"/>
 }

@@ -33,7 +33,8 @@ namespace HiQo.StaffManagement.Web.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,SuperAdmin")]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(int id)
         {
             var upsertUser = _upsertService.GetById(id);
@@ -43,10 +44,11 @@ namespace HiQo.StaffManagement.Web.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "SuperAdmin")]
-        public ActionResult Create(UpsertUser user=null)
+        public ActionResult Create()
         {
             CreateSelectLists();
+            var user = TempData["User"] as UpsertUser;
+            TempData["User"] = null;
             return View("UpsertProfile",user);
         }
 
@@ -58,6 +60,7 @@ namespace HiQo.StaffManagement.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpsertProfile(UpsertUser user)
         {
 
